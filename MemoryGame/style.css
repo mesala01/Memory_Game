@@ -1,0 +1,131 @@
+/* .wrapper > div:nth-child(odd) {
+    background: rgb(101, 167, 130);
+
+} */
+.wrapper {
+    display: grid;
+    grid-template-columns:80% 20%;
+    grid-column-gap: 1em;
+    padding: 1em;
+    height: 100vh;
+
+}
+
+.main-div{
+    display: grid;
+    grid-template-columns:repeat(4,1fr);
+    grid-column-gap: 1em;
+    grid-row-gap: 1em;
+    grid-auto-rows: minmax(1fr,auto);
+    grid-auto-columns: minmax(300px,auto);
+    padding: 2em;
+}
+
+.main-div > div:nth-child(even){
+    background: yellow;
+}
+
+.card-container{
+    width: 100%;
+    height: 100%;
+}
+
+.card{
+    width: 100%;
+    height: 100%;
+    position: relative;
+    transition: transform 0.6s;
+    transform-style: preserve-3d;
+
+}
+.front, .back{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    backface-visibility: hidden;
+}
+
+.front{
+    background: rgb(15, 15, 82);
+}
+.flipped{
+    transform: RotateY(180deg);
+}
+.back{
+    background: rgb(168, 93, 66);
+}
+
+.back img{
+    width: 100%;
+    height: 100%;
+}
+
+.front img{
+    width: 100%;
+    height: 100%;
+}
+
+.new-game{
+    width: 80%;
+    height: 20%;
+    border: 2px solid rgb(50, 51, 51);
+    border-radius: 8px;
+    font-size: 24px;
+    font-weight: bold;
+    background-color: black;
+}
+
+.score-div {
+    text-align: justify;
+    text-decoration: solid;
+    font-weight: bold;
+    font-size: 0.75em;
+
+}
+
+span{
+    display: block;
+    height: 40px;
+    width: 40px;
+    line-height: 40px;
+    margin-left: 50%;
+    -moz-border-radius: 20px;
+    border-radius: 20px;
+
+    background-color: black;
+    color: white;
+    text-align: center;
+    font-size: 2em
+}
+
+#current-score{
+    color: chocolate;
+}
+
+#best-score{
+    color: rgb(16, 129, 45);
+}
+
+#lowest-score{
+    color: rgb(199, 48, 73);
+}
+
+#clicks{
+    color: rgb(25, 139, 216);
+}
+
+.header{
+    font-size: 4em;
+    text-align: center;
+    padding-bottom:1em ;
+    color: rgb(233, 229, 233);
+    background: rgb(50, 51, 51);
+}
+
+.new-game{
+    color: rgb(233, 229, 233) ;
+}
+
+body{
+    background:rgb(50, 51, 51) ;
+}
