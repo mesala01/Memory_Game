@@ -3,6 +3,7 @@ const imgArray = ['images/img1.jpg', 'images/img2.jpg', 'images/img3.jpg', 'imag
     'images/img4.jpg', 'images/img5.jpg', 'images/img6.jpg'];
 const shuffArr = shuffleImages(imgArray);
 const cards = document.querySelectorAll(".back");
+const newGameBtn = document.querySelector(".new-game");
 const currentScore = document.querySelector("#current-score");
 let bestScore = document.querySelector("#best-score");
 const lowestScore = document.querySelector("#lowest-score");
@@ -14,17 +15,32 @@ let currentCards = [];
 let pointsWon =0;
 let lowestPoints =0;
 let highestPoints =0;
+let localB = "";
+let localL = "";
 //localStorage.setItem(lowestScore);
 
 
 // assign new card randomly
 document.addEventListener("DOMContentLoaded", function () {
     imgAssignment(shuffArr);
-    bestScore.innerHTML = JSON.parse(localStorage.getItem("b"));
+    localB = JSON.parse(localStorage.getItem("b"));
+    localL =JSON.parse(localStorage.getItem("l"));
+    if(localB !== null){
+    bestScore.innerHTML = localB;
+    }
+    if(localL !== null){
     lowestScore.innerHTML = JSON.parse(localStorage.getItem("l"));
+    }
+    else{
+        lowestScore.innerHTML = 0;     
+    }
     
-    
-})
+});
+
+
+newGameBtn.addEventListener("click", function(){
+    startNewGame();
+});
 
 
 
@@ -143,8 +159,14 @@ function startNewGame() {
     totalClicks.innerHTML= clicks;
     currentScore.innerHTML =pointsWon;
     imgAssignment(shuffleImages(imgArray));
-    bestScore.innerHTML = JSON.parse(localStorage.getItem("b"));
+    localB = JSON.parse(localStorage.getItem("b"));
+    localL =JSON.parse(localStorage.getItem("l"));
+    if(localB !== null){
+    bestScore.innerHTML = localB;
+    }
+    if(localL !== null){
     lowestScore.innerHTML = JSON.parse(localStorage.getItem("l"));
+    }
     const cards = document.querySelectorAll(".back");
     for (let c of cards) {
         flip(c);
@@ -152,8 +174,9 @@ function startNewGame() {
     const timer = setTimeout(function () {
         for (let c of cards) {
             c.classList.remove("flipped");
-            pointsWon =0;
+            
         }
+        pointsWon =0;
     }, 700);
     
     
@@ -164,6 +187,11 @@ function startNewGame() {
 function gameOver(){
     if(cardFlippedNum==12){
         bestScore.innerText = getBestScore(pointsWon, highestPoints);
-        lowestScore.innerText = getLowScore(pointsWon, lowestPoints);                
+        lowestScore.innerText = getLowScore(pointsWon, lowestPoints); 
+        const timer = setTimeout(function () {
+            for (let c of cards) {
+                c.classList.remove("flipped");           
+            }
+    }, 1000);
     }
 }
