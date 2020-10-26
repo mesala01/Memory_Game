@@ -8,4 +8,4 @@ If not, the cards remain displayed to the player for one second, and then flip b
 
 The goal of the game is to match up all the pairs in fewest clicks possible.
 
-https://github.com/mesala01/Memory_Game
+https://mesala01.github.io/Memory_Game/
